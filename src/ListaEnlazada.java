@@ -66,6 +66,10 @@ public class ListaEnlazada {
         return false;
     }
 
+    public Nodo getCabeza(){
+        return this.cabeza;
+    }
+    
     public void eliminar(Object eliminar){
         Nodo actual = this.cabeza;
         Nodo anterior = null;
