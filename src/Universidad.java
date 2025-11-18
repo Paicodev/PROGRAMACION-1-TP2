@@ -71,10 +71,15 @@ public class Universidad {
 
     public void buscarPorRol(String rolBuscado) {
         System.out.println("Buscando miembros con el rol de: "+ rolBuscado);
-        for(int i = 0; i< cantidadMiembros; i++){
-            if(miembros[i].obtenerRol().equalsIgnoreCase(rolBuscado)){
-                System.out.println(miembros[i].obtenerInformacionCompleta());
+        
+        Nodo actual = miembros.getCabeza();
+        while(actual != null){
+            MiembroUniversidad mu = (MiembroUniversidad) actual.getDato();
+
+            if (mu.obtenerRol().equalsIgnoreCase(rolBuscado)){
+                System.out.println(mu.obtenerInformacionCompleta());
             }
+            actual = actual.getSiguiente();
         }
     }
 
@@ -118,12 +123,17 @@ public class Universidad {
     }
 
     public Persona buscarPorDocumento(String documento){
-        for(int i = 0; i < miembros.length; i++){
-            Persona p = (Persona) miembros[i];
-            if(documento.equals(p.getDocumento())){
+        Nodo actual = miembros.getCabeza();
+        
+        while(actual != null){
+            if (actual.getDato() instanceof Persona){
+                Persona p = (Persona) actual.getDato();
+            if(p.getDocumento().equals(documento)){
                 return p;
             }
         }
+        actual = actual.getSiguiente();
+    }
         return null;
     }
 
