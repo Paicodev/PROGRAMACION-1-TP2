@@ -10,13 +10,13 @@ private static int contadorId = 0;
     private Profesor profesor;
 
 // Constructor con parámetros
-    public Materia(int id,String nombre, String codigo, int creditos, double calificacion, Profesor profesor) {
-        this.id = id;
+    public Materia(String nombre, String codigo, int creditos, double calificacion, Profesor profesor) {
         this.nombre = nombre;
         this.codigo = codigo;
         this.creditos = creditos;
         this.calificacion = calificacion;
         this.profesor = profesor;
+        this.id = contadorId++;
     }
 
     public Materia(){

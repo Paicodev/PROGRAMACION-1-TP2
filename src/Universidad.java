@@ -3,7 +3,6 @@ public class Universidad {
     private String direccion;
     private MiembroUniversidad[] miembros;
     private int cantidadMiembros;
-    private int indice;
 
     // Constructor con parámetros
     public Universidad(String nombre, String direccion, int capacidadMaxima) {
@@ -11,7 +10,6 @@ public class Universidad {
         this.direccion = direccion;
         this.miembros = new MiembroUniversidad[capacidadMaxima];
         this.cantidadMiembros = 0;
-        this.indice = 0;
     }
 
     public String getNombre(){
@@ -142,7 +140,26 @@ public class Universidad {
         return contador;
     }
 
-    public void ordenarEstudiantesPorApellido(){
+    public Estudiante[] getSoloEstudiantes(){
+        int cont = 0;
+
+        for(int i = 0; i < cantidadMiembros; i++){
+            if( miembros[i] instanceof Estudiante) cont++;
+        }
+
+        Estudiante[] estudiantes = new Estudiante[cont];
+        int k = 0;
+
+        for(int i=0; i < cantidadMiembros; i++){
+            if(miembros[i] instanceof Estudiante){
+                estudiantes[k]= (Estudiante) miembros[i];
+                k++;
+            }
+        }
+        return estudiantes;
+    }
+
+    public void ordenarEstudiantesPorApellido(Estudiante[] lista){
         for(int i = 0; i < cantidadMiembros - 1; i++){
             for(int j = 0; j < cantidadMiembros - i - 1; j++){
                 if(miembros[j] instanceof Estudiante && miembros[j + 1] instanceof Estudiante){

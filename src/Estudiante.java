@@ -56,20 +56,22 @@ Materia[] materias;
         return toString();
     }
 
-    public static double calcularPromedioRecursivo(Materia[] materias,int indice){
-        //va a sumar las calificaciones de las materias hasta que no haya mas materias
-        //sale del if cuando las materias son nulas o no hay materias
-        if (materias == null || materias.length == 0){
+    //devolvia una suma, asi que no era un promedio.
+    public double calcularSumaRecursiva(Materia[] materias,int indice){
+        
+        if (materias == null || indice >= materias.length){
             return 0;
         }
-        //si el indice es igual a la ultima materia, devuelve la calificacion en ese indice
-        if(indice == materias.length -1){
-            return materias[indice].getCalificacion();
-        }
-        //retorna la suma de la calificacion actual mas la siguiente
-        return materias[indice].getCalificacion() +calcularPromedioRecursivo(materias, indice +1);
+        // Llamada recursiva: nota actual + suma del resto
+        return materias[indice].getCalificacion() + calcularSumaRecursiva(materias, indice +1 );
     }
 
+    //Metodo que devuelve el promedio (suma / cantidad)
+    public double calcularPromedioRecursivo(){
+        if(materias == null || materias.length == 0) return 0;
+        double sumaTotal = calcularSumaRecursiva(materias, 0);
+        return sumaTotal / materias.length;
+    }
     public double calcularPromedioIterativo(){
         //
         //sale del if cuando las materias son nulas o no hay materias

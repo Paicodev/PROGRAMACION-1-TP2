@@ -4,20 +4,19 @@ public class App {
 
         Profesor profesor1 = new Profesor("Pablo", "Sosa", 45, "30111222", "Programacion", 20, 5);
         Personal personal1 = new Personal("Carla", "Alvarez", 35, "35777666", "Administracion", "Secretaria", "2019-03-15");
-        Materia materia1 = new Materia(1,"Programacion 1", "PROG1", 4, 1, profesor1);
-        Materia materia2 = new Materia(2,"Matematica 1", "MAT1", 4, 10, profesor1);
+        Materia materia1 = new Materia("Programacion 1", "PROG1", 4, 7.5, profesor1);
+        Materia materia2 = new Materia("Matematica 1", "MAT1", 4, 10, profesor1);
 
         Materia[] materias = {materia1, materia2};
         
        
-        Estudiante estudiante1 = new Estudiante("Alex", "Lopez", 23, "44333222", "Programador Universitario", 8.5, materias);
-        Estudiante estudiante2 = new Estudiante("Maria", "Gomez", 22, "39994444", "Marketing Cultural", 9.0, materias);
-        Estudiante estudiante3 = new Estudiante("Abril", "Bidegain", 19, "48555444", "Bioingenieria", 8.0, materias);
+        Estudiante estudiante1 = new Estudiante("Alex", "Lopez", 23, "44333222", "Programador Universitario", 5, materias);
+        Estudiante estudiante2 = new Estudiante("Maria", "Gomez", 22, "39994444", "Marketing Cultural", 7.5, materias);
+        Estudiante estudiante3 = new Estudiante("Abril", "Bidegain", 19, "48555444", "Bioingenieria", 10, materias);
 
         Estudiante[] estudiantes = {estudiante1, estudiante2, estudiante3};
 
-        double sumaRecursiva = estudiante1.calcularPromedioRecursivo(materias, 0);
-        double promedioRecursivo = sumaRecursiva / materias.length;
+        double promedioRecursivo = estudiante1.calcularPromedioRecursivo();
         double promedioIterativo = estudiante1.calcularPromedioIterativo();
 
         System.out.println("\nPromedio (recursivo): " + promedioRecursivo);
@@ -37,9 +36,13 @@ public class App {
         uni.listarEstudiantes();
         
         System.out.println("\nOrdenando Estudiantes por Apellido...");
-        uni.ordenarEstudiantesPorApellido();
-        uni.listarEstudiantes();
 
+        Estudiante[] listaEstudiantes = uni.getSoloEstudiantes();
+
+        uni.ordenarEstudiantesPorApellido(listaEstudiantes);
+        for (Estudiante e : listaEstudiantes) {
+            System.out.println(e);
+        }
 
         System.out.println("\n--Busqueda por documento---\n");
         Persona encontrada = uni.buscarPorDocumento("44333222");
