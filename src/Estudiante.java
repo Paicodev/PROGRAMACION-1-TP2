@@ -1,17 +1,22 @@
 public class Estudiante extends Persona implements MiembroUniversidad{
-String carrera;
-double promedio;
-Materia[] materias;
+private String carrera;
+private double promedio;
+private ListaEnlazada materias;
 
-    public Estudiante(String nombre, String apellido, int edad, String documento, String carrera, double promedio, Materia materias []){
+    public Estudiante(String nombre, String apellido, int edad, String documento, String carrera, double promedio, ListaEnlazada materias){
         super(nombre, apellido, edad, documento);    
         this.carrera = carrera;
         this.promedio = promedio;
-        this.materias = materias;
+        //Inicializamos la lista vacía instanciandola al ser objeto, sino es null le asignamos la que viene por parametro
+        if(materias == null){
+            this.materias = new ListaEnlazada();
+        } else {
+            this.materias = materias;
+        }
     }
 
     public Estudiante(){
-
+        this.materias = new ListaEnlazada();
     }
 
     //Metodos Getters y Setters//
