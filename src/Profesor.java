@@ -3,15 +3,11 @@ public class Profesor extends Persona implements MiembroUniversidad{
     ListaEnlazada materiasAsignadas;
     int añosExperiencia;
 
-    public Profesor(String nombre, String apellido, int edad,String documento, String especialidad, int añosExperiencia, ListaEnlazada materiasAsignadas){
+    public Profesor(String nombre, String apellido, int edad,String documento, String especialidad, int añosExperiencia){
         super(nombre, apellido, edad, documento);
         this.especialidad = especialidad;
         this.añosExperiencia = añosExperiencia;
-        if(materiasAsignadas ==null){
          this.materiasAsignadas = new ListaEnlazada();
-        }else {
-            this.materiasAsignadas = materiasAsignadas;
-        }
     }
 
     public String getEspecialidad(){

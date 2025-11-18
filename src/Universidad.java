@@ -7,11 +7,7 @@ public class Universidad {
     public Universidad(String nombre, String direccion) {
         this.nombre = nombre;
         this.direccion = direccion;
-        if(miembros == null){
          this.miembros = new ListaEnlazada();
-        }else{
-            this.miembros = miembros;
-        }
         
     }
 
@@ -189,6 +185,9 @@ public class Universidad {
     public void ordenarEstudiantesPorApellido(Estudiante[] lista){
         
         int n = lista.length;
+
+        if (n <= 1) return;
+
         for(int i = 0; i < n - 1; i++){
             for(int j = 0; j < n - i - 1; j++){
                 if(lista[j].getApellido().compareToIgnoreCase(lista[j + 1].getApellido()) > 0){
