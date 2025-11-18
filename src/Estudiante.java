@@ -43,11 +43,13 @@ private ListaEnlazada materias;
         this.promedio = promedio;
     }
 
-    public Materia [] getMaterias(){
-        return materias;
+    //Devolvemos el objeto Lista completo (en este caso lista de materias)
+    public ListaEnlazada getMaterias(){
+        return this.materias;
     }
 
-    public void setMaterias(Materia[] materias){
+    //raramente se usa, porque es una lista nueva que reemplazaria todo.
+    public void setMaterias(ListaEnlazada materias){
         this.materias = materias;
     }
 
@@ -88,7 +90,8 @@ private ListaEnlazada materias;
         for (int i = 0; i < materias.length; i++){
             suma += materias[i].getCalificacion();
         }
-        return suma / materias.length;
+        
+        return suma / cantidad;
     }
 
     @Override
