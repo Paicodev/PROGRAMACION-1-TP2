@@ -63,6 +63,11 @@ private ListaEnlazada materias;
         return toString();
     }
 
+    //lo que faltaba para agregarla en el main
+    public void agregarMateria(Materia m) {
+        this.materias.agregarPrimero(m);
+    }
+
     //devolvia una suma, asi que no era un promedio.
     //1- Como Nodo guarda un Object (genérico), al sacar el dato, Java no sabe que es una materia.
     public double calcularSumaRecursiva(Nodo actual){
