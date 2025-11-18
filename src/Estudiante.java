@@ -64,31 +64,42 @@ private ListaEnlazada materias;
     }
 
     //devolvia una suma, asi que no era un promedio.
-    public double calcularSumaRecursiva(Materia[] materias,int indice){
         
-        if (materias == null || indice >= materias.length){
+        if (actual == null){
             return 0;
         }
+        //2- Hacemos un Casting (convertirlo) para poder usar .getCalificacion() (esto no podia hacerlo con el nodo)
+        Materia materiaActual = (Materia) actual.getDato();
         // Llamada recursiva: nota actual + suma del resto
-        return materias[indice].getCalificacion() + calcularSumaRecursiva(materias, indice +1 );
+        return materiaActual.getCalificacion() + calcularSumaRecursiva(actual.getSiguiente());
     }
 
     //Metodo que devuelve el promedio (suma / cantidad)
     public double calcularPromedioRecursivo(){
-        if(materias == null || materias.length == 0) return 0;
-        double sumaTotal = calcularSumaRecursiva(materias, 0);
-        return sumaTotal / materias.length;
+        int cantidad = materias.contarElementos();
+
+        if(cantidad == 0) return 0;
+
+        double sumaTotal = calcularSumaRecursiva(materias.getCabeza());
+        this.promedio = sumaTotal / cantidad;
+        return sumaTotal / cantidad;
     }
     public double calcularPromedioIterativo(){
         //
         //sale del if cuando las materias son nulas o no hay materias
-        if (materias == null || materias.length == 0){
-            return 0;
-        }
+
+        int cantidad = materias.contarElementos();
+
+        if(cantidad == 0) return 0;
+
         double suma = 0;
-        //recorre el array de materias y suma las calificaciones
-        for (int i = 0; i < materias.length; i++){
-            suma += materias[i].getCalificacion();
+
+        Nodo actual = materias.getCabeza();
+
+        while (actual != null){
+            Materia materiaActual = (Materia) actual.getDato();
+            suma += materiaActual.getCalificacion();
+            actual = actual.getSiguiente();
         }
         
         return suma / cantidad;
