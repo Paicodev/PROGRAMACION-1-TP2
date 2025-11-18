@@ -161,32 +161,41 @@ public class Universidad {
     public Estudiante[] getSoloEstudiantes(){
         int cont = 0;
 
-        for(int i = 0; i < cantidadMiembros; i++){
-            if( miembros[i] instanceof Estudiante) cont++;
+        Nodo actual = miembros.getCabeza();
+
+        while(actual != null){
+            if( actual.getDato() instanceof Estudiante){
+                cont++;
+            } 
+            actual.getSiguiente();
         }
+
 
         Estudiante[] estudiantes = new Estudiante[cont];
-        int k = 0;
-
-        for(int i=0; i < cantidadMiembros; i++){
-            if(miembros[i] instanceof Estudiante){
-                estudiantes[k]= (Estudiante) miembros[i];
-                k++;
+        
+        actual = miembros.getCabeza();
+        int i = 0;
+        while(actual!= null){
+            if(actual.getDato() instanceof Estudiante){
+                estudiantes[i] = (Estudiante) actual.getDato();
+                i++;
             }
+            actual = actual.getSiguiente();
         }
+
         return estudiantes;
     }
 
     public void ordenarEstudiantesPorApellido(Estudiante[] lista){
-        for(int i = 0; i < cantidadMiembros - 1; i++){
-            for(int j = 0; j < cantidadMiembros - i - 1; j++){
-                if(miembros[j] instanceof Estudiante && miembros[j + 1] instanceof Estudiante){
-                    Estudiante e1 = (Estudiante) miembros[j];
-                    Estudiante e2 = (Estudiante) miembros[j + 1];
-                    if(e1.getApellido().compareToIgnoreCase(e2.getApellido()) > 0){
-                        miembros[j] = e2;
-                        miembros[j + 1] = e1;
-                    }
+        
+        int n = lista.length;
+        for(int i = 0; i < n - 1; i++){
+            for(int j = 0; j < n - i - 1; j++){
+                if(lista[j].getApellido().compareToIgnoreCase(lista[j + 1].getApellido()) > 0){
+                    Estudiante temp = lista[j];
+                    lista[j] = lista[j + 1];
+                    lista[j + 1] = temp;
+                    
                 }
             }
         }
