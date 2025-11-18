@@ -163,7 +163,7 @@ public class Universidad {
             if( actual.getDato() instanceof Estudiante){
                 cont++;
             } 
-            actual.getSiguiente();
+            actual= actual.getSiguiente();
         }
 
 
